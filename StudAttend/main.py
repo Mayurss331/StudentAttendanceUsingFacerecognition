@@ -144,11 +144,11 @@ def show_frames():
         stN=entN.get()
         stM=entM.get()
         val=(stid,stN,stM)
-        rec.execute("select ")
+        # rec.execute("select ")
         if len(classNames)!=0:
             qu=f"Alter Table {tableN} add " + stN + " int after " + classNames[len(classNames) - 1]
         else:
-            qu=f"Alter Table {tableN} add " + stN + " int after 'Date'"
+            qu=f"Alter Table {tableN} add " + stN + " int after Date"
         print(qu)
         rec.execute(qu)
         recdb.commit()
@@ -260,7 +260,7 @@ def start():
             val = tuple(val)
             if len(classNames)==0:
                 qu=f'insert into {tableN} (Date) Values(%s)'
-                val=(date)
+                val=tuple(date)
             qur=f"select * from {tableN} where Date='{date}'"
             print(qur)
             rec.execute(qur)
